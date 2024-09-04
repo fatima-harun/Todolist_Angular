@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .todo-container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .todo-header {
+      margin-bottom: 20px;
+    }
+    .todo-header h2 {
+      color: #343a40;
+    }
+    .form-label {
+      color: #495057;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+    .todo-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      background-color: #e9ecef;
+    }
+    .todo-item p {
+      margin: 0;
+      margin-left: 10px;
+      color: #212529;
+    }
+    .todo-item input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: #6c757d;
+    }
+    .unfinished-tasks {
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 1px solid #ced4da;
+      background-color: #e9ecef;
+      border-radius: 5px;
+    }
+    .unfinished-tasks h3 {
+      color: #495057;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="todo-container">
+    <div class="todo-header">
+      <h2>To Do List</h2>
+      <div class="mb-3">
+        <label for="text" class="form-label">Ajouter une tâche</label>
+        <input type="text" class="form-control" id="text" name="text" [(ngModel)]="todoValue">
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="addtodo()">Submit</button>
+    </div>
+
+    <div *ngFor="let todo of todoList; let i = index" class="todo-item">
+      <input type="checkbox" [(ngModel)]="todo.value" (ngModelChange)="changeTodo()">
+      <p [ngClass]="{'completed': todo.value}">{{todo.content}}</p>
+    </div>
+
+   
+  </div>
+
+  <script src="https://code.angularjs.org/1.8.2/angular.min.js"></script>
+</body>
+</html>
